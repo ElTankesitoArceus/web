@@ -1,16 +1,33 @@
 ---
+import Footer from '../components/Footer.astro';
+import Head from '../components/Head.astro';
+
 
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+	<Head></Head>
+	<div class="md:flex w-full h-screen bg-background mx-auto px-5  gap-10 items-center justify-between">
+		<div class="basis-1/2"> 
+			<h1 id="hero-text" class="text-slate-200 font-bold text-3xl text-start font-heading leading-tight m-3 overflow-hidden">Random utils for your <p id="changing-hero" class="bg-clip-text text-transparent min-w-5 min-h-5 bg-gradient-to-r from-primary to-accent"></p></h1>
+			<p id="extra-hero-text" class="text-primary m-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores repellat perspiciatis aspernatur quis voluptatum porro incidunt, libero sequi quos eos velit </p>
+		</div>
+		<div class="basis-1/2">
+			<img src="https://placehold.co/600x400" alt="Hero image" width="2350" height="2359"
+                class="rounded-3xl object-cover md:max-h-fit ">
+		</div>
+	</div>
+	<main>
+		<Footer />
+	</main>
+	<script>
+		import { timeline, spring } from "motion";
+		const sequence = [
+			["#hero-text", { x: [-500, 0] }, { duration: 0.7 , easing: "ease-out"}],
+			["#extra-hero-text", {y: [200, 0], opacity: [0, 1]}, {duration: 0.8, easing: spring({ damping: 15 })}]
+		];
+		timeline(sequence, {defaultOptions: { ease: "ease-in-out" }});
+	</script>
+	<script src="../components/text-change">
+	</script>
 </html>
